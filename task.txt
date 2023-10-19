@@ -1,0 +1,44 @@
+//подсчет повторяющихся символов -java
+
+import java.util.Scanner;
+
+public class Main
+{
+    public static void main(String[] args)
+    {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Введите строку (qwerty): ");
+        String input = scanner.nextLine();
+        String result = "";
+
+        //массив для подсчета количества каждого символа
+        int[] count = new int[256];
+
+        //проходка по каждому символу входной строки
+        for (int i = 0; i < input.length(); i++) {
+            char evr = input.charAt(i);
+
+            //инкремент для текущего символа
+            count[evr]++;
+        }
+
+        //если символ повторяется - добавление в резуультат
+        for (int i = 0; i < input.length(); i++) {
+            char evr1 = input.charAt(i);
+
+            //вывод каждого повторяющегося символа на новую строку
+            if (count[evr1] > 1) {
+                result += evr1;
+                System.out.println(": " + evr1 + " - " + count[evr1]);
+            }
+
+            //чтобы символы не показывались 1+ раз - значение счетчика ставим 0
+            count[evr1] = 0;
+        }
+
+        //итоговое количество повторов
+        System.out.println("\nПовторяющиеся символы: " + result.length());
+        scanner.close();
+    }
+}
